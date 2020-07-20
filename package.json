@@ -1,0 +1,53 @@
+{
+  "name": "char-count-pr-comment",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "private": true,
+  "description": "GitHub Actions to count the number of characters and comment on a pull request",
+  "main": "lib/main.js",
+  "scripts": {
+    "build": "npm-run-all -l -s clean compile pack",
+    "lint": "run-p -l lint:*",
+    "prerelease": "npm-run-all -p lint -s build",
+    "clean": "rimraf dist lib",
+    "compile": "tsc",
+    "pack": "ncc build",
+    "fix:lint": "npm run lint:eslint -- --fix",
+    "fix:md": "prettier --write README.md",
+    "fix": "run-p fix:*",
+    "lint:eslint": "eslint 'src/**/*.ts'",
+    "lint:md": "prettier --check README.md",
+    "lint:ts": "tsc --noEmit",
+    "start": "npm run compile -- --watch",
+    "release": "shipjs prepare"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miyajan/char-count-pr-comment.git"
+  },
+  "keywords": [
+    "actions",
+    "node",
+    "npm"
+  ],
+  "author": "miyajan",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/github": "^4.0.0",
+    "@actions/glob": "^0.1.0"
+  },
+  "devDependencies": {
+    "@cybozu/eslint-config": "^11.0.0",
+    "@types/node": "^14.0.23",
+    "@zeit/ncc": "^0.22.3",
+    "eslint": "^7.5.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
+    "shipjs": "^0.20.1",
+    "typescript": "^3.9.7"
+  }
+}

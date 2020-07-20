@@ -1,0 +1,16 @@
+name: 'Char count'
+description: 'Count the number of characters and comment on a pull request'
+author: 'miyajan'
+inputs:
+  token:
+    description: 'The GitHub Token to comment on a pull request.'
+    required: true
+  patterns:
+    description: 'Glob patterns to search files under the current working directory.'
+    required: true
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+branding:
+  icon: sliders
+  color: blue
