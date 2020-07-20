@@ -24,7 +24,7 @@ export async function run(): Promise<void> {
         core.setFailed(`${filePath} is not a file`);
         return;
       }
-      const content = await fs.promises.readFile(filePath);
+      const content = await fs.promises.readFile(filePath, "utf8");
       const relativePath = path.relative(cwd, filePath);
       const charCount = content.length;
       rows.push(`| ${relativePath} | ${charCount} |`);
